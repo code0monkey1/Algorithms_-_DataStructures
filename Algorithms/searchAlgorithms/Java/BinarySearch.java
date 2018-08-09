@@ -32,10 +32,14 @@ public class BinarySearch {
 
         }
     }
+    
+    public boolean found(){    // this return true if the number was present in the array 
+      return indexFound >= 0;
+  }
 
-    public int getIndexFound() {
-        return indexFound;
-    }
+  public int getIndexFound() {
+        return indexFound;             // return -1 if number not found , else return the index of the number
+    }  
 
     private int getMid(int start, int end) {
         return (start + ((end-start) >> 1)); // to escape the integer overflow
