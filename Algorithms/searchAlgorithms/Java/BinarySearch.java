@@ -21,9 +21,9 @@ public class BinarySearch {
 
             int mid = getMid(start, end);
 
-            if (midElementGreaterThanNumber(arr, mid, number)) {
+            if (midElementIsGreaterThanNumber(arr, mid, number)) {
                 end = mid - 1;
-            } else if (midElementLesserThanNumber(arr, mid, number)) {
+            } else if (midElementIsLesserThanNumber(arr, mid, number)) {
                 start = mid + 1;
             } else {
                 indexFound = mid;
@@ -45,11 +45,11 @@ public class BinarySearch {
         return (start + ((end-start) >> 1)); // to escape the integer overflow
     }
 
-    private boolean midElementGreaterThanNumber(int[] arr, int mid, int number) {
+    private boolean midElementIsGreaterThanNumber(int[] arr, int mid, int number) {
         return arr[mid] > number;
     }
 
-    private boolean midElementLesserThanNumber(int[] arr, int mid, int number) {
+    private boolean midElementIsLesserThanNumber(int[] arr, int mid, int number) {
         return arr[mid] < number;
     }
 
