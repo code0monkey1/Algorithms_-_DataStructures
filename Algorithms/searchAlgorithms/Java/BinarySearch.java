@@ -1,12 +1,15 @@
 package algo;
 
+// Time complexity (log(N)) where N = number of elements
+// Space Complexity O(1) , no extra space used
+
 public class BinarySearch {
     private int number;
     private int arr[];
     private int indexFound;
 
     public BinarySearch(int arr[], int number) {
-        this.arr = arr; // assumption : arr is a sorted array and is not empty
+        this.arr = arr; // assumption : arr is a sorted array
         this.number = number;
         this.indexFound = -1;
     }
@@ -21,9 +24,9 @@ public class BinarySearch {
 
             int mid = getMid(start, end);
 
-            if (midElementIsGreaterThanNumber(arr, mid, number)) {
+            if (midElementGreaterThanNumber(arr, mid, number)) {
                 end = mid - 1;
-            } else if (midElementIsLesserThanNumber(arr, mid, number)) {
+            } else if (midElementLesserThanNumber(arr, mid, number)) {
                 start = mid + 1;
             } else {
                 indexFound = mid;
@@ -32,24 +35,20 @@ public class BinarySearch {
 
         }
     }
-    
-    public boolean found(){    // this return true if the number was present in the array 
-      return indexFound >= 0;
-  }
 
-  public int getIndexFound() {
-        return indexFound;             // return -1 if number not found , else return the index of the number
-    }  
+    public int getIndexFound() {
+        return indexFound;
+    }
 
     private int getMid(int start, int end) {
         return (start + ((end-start) >> 1)); // to escape the integer overflow
     }
 
-    private boolean midElementIsGreaterThanNumber(int[] arr, int mid, int number) {
+    private boolean midElementGreaterThanNumber(int[] arr, int mid, int number) {
         return arr[mid] > number;
     }
 
-    private boolean midElementIsLesserThanNumber(int[] arr, int mid, int number) {
+    private boolean midElementLesserThanNumber(int[] arr, int mid, int number) {
         return arr[mid] < number;
     }
 
