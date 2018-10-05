@@ -1,6 +1,8 @@
 package algo;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Knapsack {
 
@@ -28,7 +30,12 @@ public class Knapsack {
         itemWeight[3] = 4;
         itemWeight[4] = 5;
 
-        System.out.println(highestValueForKnapsack());
+        int highestValue = highestValueForKnapsack();
+        List<Integer> itemsSelected = itemsSelected();
+
+        System.out.println(highestValue);
+        System.out.println(itemsSelected);
+
     }
 
     public static int highestValueForKnapsack() {
@@ -37,11 +44,26 @@ public class Knapsack {
 
         for (int i = 1; i <= items; i++)
             for (int k = 1; k <= knapsackWeight; k++)
-                dp[i][k] = Math.max(dp[i - 1][k],itemWeight[i]<=k? itemValue[i] + dp[i - 1][k-itemWeight[i]] : 0);
+                dp[i][k] = Math.max(dp[i - 1][k], itemWeight[i] <= k ? itemValue[i] + dp[i - 1][k - itemWeight[i]] : 0);
 
 
         System.out.println(Arrays.deepToString(dp).replace("],", "]\n"));
 
         return dp[items][knapsackWeight];
+    }
+
+    public static List<Integer> itemsSelected() {
+        List<Integer> itemsSelected = new ArrayList<>();
+
+
+        for (int row = items, column = knapsackWeight; row >= 1; row--) {
+
+            if (dp[row][column] > dp[row - 1][column]) {
+                itemsSelected.add(row);
+                column = column - itemWeight[row];
+            }
+
+        }
+        return itemsSelected;
     }
 }
