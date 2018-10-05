@@ -47,8 +47,6 @@ public class Knapsack {
                 dp[i][k] = Math.max(dp[i - 1][k], itemWeight[i] <= k ? itemValue[i] + dp[i - 1][k - itemWeight[i]] : 0);
 
 
-        System.out.println(Arrays.deepToString(dp).replace("],", "]\n"));
-
         return dp[items][knapsackWeight];
     }
 
