@@ -35,8 +35,15 @@ public class IntMinPriorityQueue {
     }
 
     public void pop() {
+        if(lastIndex<0)return;
+
         arr[0] = arr[lastIndex--];
         sink(0);
+    }
+    public int peek(){
+        if(lastIndex<0) throw new IllegalStateException();
+
+        return arr[0];
     }
 
     public int getLastIndex() {
@@ -52,10 +59,10 @@ public class IntMinPriorityQueue {
         int parentIndex = (childIndex - 1) / 2;
 
         if (childIndex == 0 ||
-                isInvalidIndex(parentIndex) ||
-                isChildGreaterThanParent(arr[childIndex], arr[parentIndex])) return;
+            isInvalidIndex(parentIndex) ||
+            isChildGreaterThanParent(arr[childIndex], arr[parentIndex])) return;
 
-        swap(childIndex, parentIndex);
+            swap(childIndex, parentIndex);
 
         swim(parentIndex);
     }
@@ -101,14 +108,14 @@ public class IntMinPriorityQueue {
                 elementIndex = index;
             }
 
-        if (!foundElement) return;
+            if (!foundElement) return;
 
-        swap(lastIndex, elementIndex);
+            swap(lastIndex, elementIndex);
 
-        lastIndex--;
-        sink(elementIndex);
+            lastIndex--;
+            sink(elementIndex);
+
+        }
+
 
     }
-
-
-}
