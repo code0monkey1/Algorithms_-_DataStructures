@@ -1,4 +1,5 @@
 // so the size will increse twice wherever the limit is reached 
+// size growth is amortized constant o(1)
 
 #include <bits/stdc++.h>
 
@@ -49,6 +50,7 @@ int get_element_at(int index_at){
 }
 void printElements(){
 	for(int i=0;i<size;i++)cout<<arr[i]<<" ";
+		cout<<"\n";
 }
 
 int main(){
@@ -58,14 +60,23 @@ int main(){
 	add(4);
 	add(2);
 	add(4);
-	cout<<get_element_at(1)<<"\n";
-	cout<<get_element_at(10)<<"\n";
-	remove(3);
-	remove(0);
-	remove(1);
-	remove(0);
-	remove(4);
-
 	printElements();
+
+
+	cout<<get_element_at(10)<<"\n";
+	remove(3);	printElements();
+	remove(0);	printElements();
+	remove(1);	printElements();
+	remove(0);	printElements();
+	remove(4);	printElements();
+	cout<<"reached 1\n";
+	printElements();
+	cout<<"reached 2\n";
+	add(2);	printElements();
+	add(4);	printElements();
+	add(2);	printElements();
+	add(4);	printElements();
+
+	cout<<"reached 3\n";
 
 }
